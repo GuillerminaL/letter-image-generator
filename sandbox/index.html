@@ -1,0 +1,16 @@
+<html>
+    <body>
+      <img id="uppercase" />
+      <img id="lowercase" />
+      <img id="multiple" />
+    </body>
+    <script type="module">
+        import { createImageFromInitials } from "../dist/esm/index.js";
+        const uppercase = createImageFromInitials(100, 'G');
+        const lowercase = createImageFromInitials(100, 'L');
+        const multiple = createImageFromInitials(100, 'Gl');
+        document.querySelector('#uppercase').src = uppercase;
+        document.querySelector('#lowercase').src = lowercase;
+        document.querySelector('#multiple').src = multiple;
+    </script>
+</html>

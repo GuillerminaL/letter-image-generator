@@ -1,0 +1,17 @@
+{
+  "name": "letter-image-generator",
+  "version": "1.0.0",
+  "description": "Simple utility to create an image for a given letter",
+  "main": "dist/esm/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
