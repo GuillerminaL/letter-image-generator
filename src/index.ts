@@ -10,7 +10,7 @@ export const getRandomColor = () => {
     return color;
 };
 
-export const createImageFromInitials = (size: number, letters: string, fontFamily = 'Arial') => {
+const generateLetterImage = (letters: string, size: number, fontStyle = 'normal', fontVariant = 'normal', fontWeight = 'normal', fontFamily = 'Arial') => {
     const color = getRandomColor();
     const canvas = document.createElement('canvas');
     const context: CanvasRenderingContext2D | null = canvas.getContext('2d');
@@ -28,8 +28,10 @@ export const createImageFromInitials = (size: number, letters: string, fontFamil
     context.fillStyle = color;
     context.textBaseline = 'middle';
     context.textAlign = 'center';
-    context.font = `${size / 2}px ${fontFamily}`;
+    context.font = `${fontStyle} ${fontVariant} ${fontWeight} ${size / 2}px ${fontFamily}`;
     context.fillText(letters, size / 2, size / 2);
 
     return canvas.toDataURL();
 };
+
+export default generateLetterImage;
