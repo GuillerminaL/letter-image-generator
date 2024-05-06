@@ -1,16 +1,57 @@
-<html>
-    <body>
-      <img id="uppercase"  />
-      <img id="lowercase" />
-      <img id="multiple" />
-    </body>
-    <script type="module">
-        import generateLetterImage from "../dist/esm/index.js";
-        const uppercase = generateLetterImage('L', 100);
-        const lowercase = generateLetterImage('i', 100);
-        const multiple = generateLetterImage('Lig', 100, 'italic', 'small-caps', 'bold', 'Georgia');
-        document.querySelector('#uppercase').src = uppercase;
-        document.querySelector('#lowercase').src = lowercase;
-        document.querySelector('#multiple').src = multiple;
-    </script>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Letter Image Generator Demo</title>
+</head>
+<body>
+    <nav>
+        <img id="logo"  />
+        <h1> Letter Image Generator </h1>
+    </nav>
+
+    <div id="container">
+        <div class="card">
+            <h2>Default settings</h2>
+            <div>
+                <div><img id="uppercase"  /><h5>Uppercase entry</h5></div>
+                <div><img id="lowercase" /><h5>Lowercase entry</h5></div>
+                <div><img id="multiple" /><h5>Several letters and cases entry</h5></div>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Custom settings</h2>
+            <div>
+                <div>
+                    <img id="custom"  />
+                    <h5>All custom settings</h5>
+                    <h6>Applied settings: {style:'italic', variant:'small-caps', weight:'bold', family:'Georgia',
+                        lettersColor: '#ffffff', backgroundColor: '#1eb3a4'}</h6>
+                </div>
+                <div>
+                    <img id="customColors" />
+                    <h5>Custom colors settings</h5>
+                    <h6>Applied settings: {lettersColor: '#c9142c', backgroundColor: '#1eb3a4'}</h6>
+                </div>
+                <div>
+                    <img id="customFont" />
+                    <h5>Custom font settings</h5>
+                    <h6>Applied settings: {
+                        style: 'oblique',
+                        variant: 'small-caps',
+                        weight: '700',
+                        family: 'Times New Roman'}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+
+</body>
 </html>

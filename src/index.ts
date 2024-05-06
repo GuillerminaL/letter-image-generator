@@ -1,17 +1,51 @@
 const HEXA_SIZE = 6;
 const BASE = 16;
 
+const DEFAULT_FONT_SETTINGS = {
+    style: 'normal',
+    variant: 'normal',
+    weight: 'normal',
+    family: 'Arial'
+}
+
+export type SettingsType = {
+    style?: string;
+    variant?: string;
+    weight?: string;
+    family?: string;
+    lettersColor?: string;
+    backgroundColor?: string;
+};
+
 export const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < HEXA_SIZE; i++) {
+    let color: string = '#';
+    for (let i: number = 0; i < HEXA_SIZE; i++) {
         color += letters[Math.floor(Math.random() * BASE)];
     }
     return color;
 };
 
-const generateLetterImage = (letters: string, size: number, fontStyle = 'normal', fontVariant = 'normal', fontWeight = 'normal', fontFamily = 'Arial') => {
-    const color = getRandomColor();
+function getSettings(settings: SettingsType | null | undefined,
+                     size : number ):
+    {lettersSize: number, lettersColor: string, backgroundColor: string, style: string, variant: string, weight: string, family: string}
+{
+    const lettersColor: string = (settings && settings.lettersColor) ? settings.lettersColor : getRandomColor();
+    return {
+        lettersSize:  (size / 2),
+        lettersColor: lettersColor,
+        backgroundColor: (settings && settings.backgroundColor) ? settings.backgroundColor : `${lettersColor}50`,
+        style: (settings && settings.style) ? settings.style : DEFAULT_FONT_SETTINGS.style,
+        variant: (settings && settings.variant) ? settings.variant : DEFAULT_FONT_SETTINGS.variant,
+        weight: (settings && settings.weight) ? settings.weight : DEFAULT_FONT_SETTINGS.weight,
+        family: (settings && settings.family) ? settings.family : DEFAULT_FONT_SETTINGS.family
+    }
+}
+
+const generateLetterImage = (letters: string, size: number, settings: SettingsType | null | undefined ) => {
+
+    const {lettersSize, lettersColor, backgroundColor, style, variant, weight, family} = getSettings(settings, size);
+
     const canvas = document.createElement('canvas');
     const context: CanvasRenderingContext2D | null = canvas.getContext('2d');
     if (!context) {
@@ -22,14 +56,14 @@ const generateLetterImage = (letters: string, size: number, fontStyle = 'normal'
     context.fillStyle = '#ffffff';
     context.fillRect(0, 0, size, size);
 
-    context.fillStyle = `${color}50`;
+    context.fillStyle = backgroundColor;
     context.fillRect(0, 0, size, size);
 
-    context.fillStyle = color;
+    context.fillStyle = lettersColor;
     context.textBaseline = 'middle';
     context.textAlign = 'center';
-    context.font = `${fontStyle} ${fontVariant} ${fontWeight} ${size / 2}px ${fontFamily}`;
-    context.fillText(letters, size / 2, size / 2);
+    context.font = `${style} ${variant} ${weight} ${lettersSize}px ${family}`;
+    context.fillText(letters, lettersSize, lettersSize);
 
     return canvas.toDataURL();
 };

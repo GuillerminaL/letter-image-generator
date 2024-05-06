@@ -27,7 +27,7 @@ according to the following characteristics:
     - bolder
     - lighter 
     - 100, 200, 300, 400, 500, 600, 700, 800, 900
-  - Font family: 
+  - Font family (not exhaustive list): 
     - Arial (*default*) <img src="https://raw.githubusercontent.com/GuillerminaL/letter-image-generator/main/doc/fonts/family/Arial.png" width="40" align="center">
     - Courier New <img src="https://raw.githubusercontent.com/GuillerminaL/letter-image-generator/main/doc/fonts/family/Courier New.png" width="40" align="center">
     - Cursive <img src="https://raw.githubusercontent.com/GuillerminaL/letter-image-generator/main/doc/fonts/family/Cursive.png" width="40" align="center">
@@ -62,9 +62,25 @@ Default
 ```
 
 Custom
+
+  - Passing settings as a variable
 ```
-    //Creates an image with the specified letter/s and size in px, custom font style, variant, weight and font values
-    const img = generateLetterImage('Lig', 100, 'italic', 'small-caps', 'bold', 'Georgia');
+    const allCustomSettings = {
+        style:'italic',
+        variant:'small-caps',
+        weight:'bold',
+        family:'Georgia',
+        lettersColor: '#ffffff',
+        backgroundColor: '#1eb3a4'
+    };
+    const custom = generateLetterImage('AC', 100, allCustomSettings);
+```
+  
+  - ... or inline settings
+```
+  const customColors = generateLetterImage('sc', 100, {
+      lettersColor: '#c9142c', style: 'italic'
+  });
 ```
 
 ### Usage Example 
@@ -84,7 +100,7 @@ Custom
             //2. Generate
             // default: const img = generateLetterImage('L', 100);
             // custom:
-            const img = generateLetterImage('Lig', 100, 'italic', 'normal', 'lighter', 'sans-serif');
+            const img = generateLetterImage('Lig', 100, {style:'italic', weight:'lighter', family:'sans-serif'});
             
             //3. Use
             document.querySelector('#example').src = img;
