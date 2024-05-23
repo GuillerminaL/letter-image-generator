@@ -1,14 +1,22 @@
 {
   "name": "letter-image-generator",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Simple utility to create an image for a given letter",
-  "main": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
+  "types": "dist/index.d.ts",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "type": "module",
   "scripts": {
     "build:esm": "tsc -p tsconfig.esm.json",
-    "build:cjs": "tsc -p tsconfig.commonjs.json",
-    "build": "npm run build:esm && npm run build:cjs"
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build": "npm run build:esm && npm run build:cjs && npm run build:types"
   },
   "keywords": [],
   "author": "",
