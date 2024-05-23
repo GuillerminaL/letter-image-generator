@@ -1,3 +1,31 @@
+//---------------- Environment  (Node.js or browser) handler ------------------------------------
+let createCanvas: any;
+let CanvasRenderingContext2D: any;
+
+const isNode = () => {
+    console.log("env");
+    return (typeof process !== 'undefined') && (process.release?.name === 'node');
+};
+
+if (isNode()) {
+
+    // We are in a Node.js environment
+    const { createCanvas: nodeCreateCanvas, CanvasRenderingContext2D: nodeCanvasRenderingContext2D } = require('canvas');
+    createCanvas = nodeCreateCanvas;
+    CanvasRenderingContext2D = nodeCanvasRenderingContext2D;
+} else {
+    // We are in a browser environment
+    createCanvas = (width: number, height: number) => {
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        return canvas;
+    };
+    CanvasRenderingContext2D = window.CanvasRenderingContext2D;
+}
+
+//-------------------------------------------------------------------------
+
 const HEXA_SIZE = 6;
 const BASE = 16;
 
@@ -46,12 +74,14 @@ const generateLetterImage = (letters: string, size: number, settings: SettingsTy
 
     const {lettersSize, lettersColor, backgroundColor, style, variant, weight, family} = getSettings(settings, size);
 
-    const canvas = document.createElement('canvas');
+    // const canvas = document.createElement('canvas');
+    const canvas = createCanvas(size, size);
     const context: CanvasRenderingContext2D | null = canvas.getContext('2d');
+
     if (!context) {
         return null;
     }
-    canvas.width = canvas.height = size;
+    // canvas.width = canvas.height = size;
 
     context.fillStyle = '#ffffff';
     context.fillRect(0, 0, size, size);

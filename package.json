@@ -1,6 +1,6 @@
 {
   "name": "letter-image-generator",
-  "version": "0.9.0",
+  "version": "0.11.0",
   "description": "Simple utility to create an image for a given letter",
   "types": "./dist/types/index.d.ts",
   "main": "./dist/cjs/index.cjs",
