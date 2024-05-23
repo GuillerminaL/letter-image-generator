@@ -1,7 +1,8 @@
 nav { display: flex; flex-direction: row; color: gray; align-items: center; }
 nav img { padding: 1em; }
-#container { display: flex; text-align: center; color: lightgrey; }
+#container { display: flex; flex-flow: wrap; text-align: center; color: lightgrey; }
 #container .card { width: 40%; padding: 2em; text-align: center; }
-#container .card div { display: flex; padding: 1em; align-items: center; justify-content: center; }
-#container .card div div { max-width: 30%; display: flex; flex-direction: column; }
+#container .card div { display: flex; flex-flow: wrap; padding: 1em; justify-content: space-around; align-items: start; }
+#container .card div div { max-width: 30%; display: flex; flex-direction: column; align-items: center }
+
 #logo { border-radius: 100% }

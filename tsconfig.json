@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "ESNext",
-    "outDir": "./dist/esm",
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,

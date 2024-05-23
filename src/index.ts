@@ -42,7 +42,7 @@ function getSettings(settings: SettingsType | null | undefined,
     }
 }
 
-const generateLetterImage = (letters: string, size: number, settings: SettingsType | null | undefined ) => {
+const generateLetterImage = (letters: string, size: number, settings: SettingsType | null | undefined = {} ) => {
 
     const {lettersSize, lettersColor, backgroundColor, style, variant, weight, family} = getSettings(settings, size);
 
